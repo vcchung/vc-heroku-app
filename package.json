@@ -6,7 +6,7 @@
   "author": "vcchung <vcchung@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "npx nodemon index.ts"
   },
   "dependencies": {
     "express": "^4.17.3"
