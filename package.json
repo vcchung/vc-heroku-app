@@ -9,7 +9,7 @@
     "start": "node ./dist/server.js",
     "build": "npx tsc",
     "build-client": "yarn --cwd client build",
-    "heroku-postbuild": "yarn build-client",
+    "heroku-postbuild": "yarn install && yarn build-client",
     "server": "nodemon server.ts",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\""
