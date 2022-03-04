@@ -1,11 +1,9 @@
 import express from "express";
+import path from "path";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-
-app.use(express.static("public"));
-app.use(express.static("react-app"));
 
 app.get("/api/message", (request, response) => {
   response.send("This is message sent from Vincent!");
@@ -16,6 +14,12 @@ app.get("/api/json", (_, res) => {
     success: true,
     author: "vincent",
   });
+});
+
+app.use(express.static("client/build"));
+
+app.get("*", (request, response) => {
+  response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(PORT, () => {
