@@ -9,10 +9,9 @@
     "dev": "nodemon index.ts",
     "build": "npx tsc",
     "start": "node ./dist/index.js",
-    "react-app-install": "cd react-app && npx yarn install",
-    "react-app-build": "cd react-app && npx yarn build",
-    "heroku-postbuild": "npx yarn react-app-install && npx yarn react-app-build"
-
+    "react-app-install": "cd react-app && yarn install",
+    "react-app-build": "cd react-app && yarn build",
+    "heroku-postbuild": "yarn react-app-install && yarn react-app-build"
   },
   "dependencies": {
     "express": "^4.17.3"
