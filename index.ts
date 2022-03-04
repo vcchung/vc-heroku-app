@@ -3,8 +3,18 @@ import express from 'express';
 const PORT =process.env.PORT || 3000
 
 const app=express()
-app.get('/', (request, response)=>{
+
+app.use(express.static('public'))
+
+app.get('/api/message', (request, response)=>{
   response.send('This is message sent from Vincent!');
+})
+
+app.get('/api/json', (_, res)=>{
+    res.json({
+        success: true,
+        author: 'vincent'
+    })
 })
 
 app.listen(PORT, ()=>{
