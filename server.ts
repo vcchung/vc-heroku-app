@@ -12,7 +12,7 @@ app.get("/api/message", (request, response) => {
 app.get("/api/json", (_, res) => {
   res.json({
     success: true,
-    author: "vincent",
+    name: "Ivy",
   });
 });
 
