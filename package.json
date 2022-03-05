@@ -7,10 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/server.js",
-    "build": "npx tsc server.ts",
+    "build": "npx tsc",
     "install-client": "yarn --cwd client install",
     "build-client": "yarn --cwd client build",
-    "heroku-postbuild": "npx tsc server.ts && yarn install-client && yarn build-client",
+    "heroku-postbuild": "yarn build && yarn install-client && yarn build-client",
     "server": "nodemon server.ts",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\""
