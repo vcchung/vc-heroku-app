@@ -10,7 +10,7 @@
     "build": "npx tsc",
     "install-client": "yarn --cwd client install",
     "build-client": "yarn --cwd client build",
-    "heroku-postbuild": "yarn build && yarn install-client && yarn build-client",
+    "heroku-postbuild": "npx tsc && yarn install-client && yarn build-client",
     "server": "nodemon server.ts",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\""
