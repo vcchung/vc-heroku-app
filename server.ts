@@ -1,5 +1,14 @@
 import express from "express";
+import mongoose from "mongoose";
 import path from "path";
+
+// require("dotenv").config();
+import "dotenv/config";
+
+mongoose
+  .connect(`${process.env.MONGODB_CONNECT_URL}`)
+  .then(() => console.log("MongoDB connected."))
+  .catch((ex) => console.error(ex));
 
 const PORT = process.env.PORT || 5000;
 
