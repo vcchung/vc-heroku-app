@@ -6,7 +6,7 @@
   "author": "vcchung <vcchung@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/server.js",
+    "start": "node ./build/server.js",
     "build": "npx tsc",
     "install-client": "yarn --cwd client install",
     "build-client": "yarn --cwd client build",
