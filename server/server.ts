@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "path";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import taskRouter from "./router/taskRouter";
 
 dotenv.config();
@@ -14,6 +15,8 @@ mongoose
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/tasks", taskRouter);
 
