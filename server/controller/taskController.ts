@@ -1,16 +1,9 @@
 import { Request, Response } from "express";
+import Task, { ITask } from "../model/task";
 
-const getAllTasks = (reqeust: Request, response: Response) => {
-  response.status(200).json([
-    {
-      name: "do something",
-      updatedTime: new Date(),
-    },
-    {
-      name: "do another thing",
-      updatedTime: new Date(),
-    },
-  ]);
+const getAllTasks = async (reqeust: Request, response: Response) => {
+  const tasks = await Task.find({}).exec();
+  response.status(200).json(tasks);
 };
 
 export default { getAllTasks };

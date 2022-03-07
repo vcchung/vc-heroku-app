@@ -11,7 +11,7 @@
     "install-client": "yarn --cwd client install",
     "build-client": "yarn --cwd client build",
     "heroku-postbuild": "yarn build && yarn install-client && yarn build-client",
-    "server": "nodemon server.ts",
+    "server": "nodemon server/server.ts",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\""
   },
