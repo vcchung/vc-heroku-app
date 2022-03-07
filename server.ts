@@ -1,9 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
+import dotenv from "dotenv";
 
-// require("dotenv").config();
-import "dotenv/config";
+dotenv.config();
 
 mongoose
   .connect(`${process.env.MONGODB_CONNECT_URL}`)
