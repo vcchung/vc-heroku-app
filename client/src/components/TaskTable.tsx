@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Task {
@@ -7,7 +7,7 @@ interface Task {
   updatedAt: Date;
 }
 
-const TaskTable: FC = () => {
+const TaskTable = () => {
   const [tasks, setTasks] = useState<Array<Task> | null>(null);
   useEffect(() => {
     axios.get<Array<Task>>("/api/tasks").then((response) => {
@@ -15,15 +15,14 @@ const TaskTable: FC = () => {
     });
   }, []);
 
-  if (!tasks) {
-    return null;
-  }
   return (
-    <>
-      {tasks.map((task) => {
-        return renderTask(task);
-      })}
-    </>
+    tasks && (
+      <>
+        {tasks.map((task) => {
+          return renderTask(task);
+        })}
+      </>
+    )
   );
 };
 
