@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 
 interface Task {
   id: string;
@@ -17,22 +18,31 @@ const TaskTable = () => {
 
   return (
     tasks && (
-      <>
-        {tasks.map((task) => {
-          return renderTask(task);
-        })}
-      </>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Task ID</Th>
+            <Th>Summary</Th>
+            <Th>Last Update Time</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {tasks.map((task) => {
+            return renderTask(task);
+          })}
+        </Tbody>
+      </Table>
     )
   );
 };
 
 const renderTask = (task: Task) => {
   return (
-    <div>
-      <span>{task.id}</span>
-      <span>{task.summary}</span>
-      <span>{task.updatedAt}</span>
-    </div>
+    <Tr>
+      <Td>{task.id}</Td>
+      <Td>{task.summary}</Td>
+      <Td>{task.updatedAt}</Td>
+    </Tr>
   );
 };
 
