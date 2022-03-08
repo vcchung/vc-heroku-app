@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import axios from "axios";
-
-interface Data {
-  name: string;
-}
+import { ChakraProvider, Heading } from "@chakra-ui/react";
+import TaskTable from "./components/TaskTable";
 
 function App() {
-  useEffect(() => {
-    axios.get("/api/json").then((response) => setName(response.data.name));
-  }, []);
-  const [name, setName] = useState("Vincent");
   return (
-    <div className="App">
-      <h1>I am {name}</h1>
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <Heading as="h2" size="3xl" mt={10}>
+          VC Todo App
+        </Heading>
+        <TaskTable />
+      </div>
+    </ChakraProvider>
   );
 }
 
