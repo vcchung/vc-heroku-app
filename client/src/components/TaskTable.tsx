@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
+import TaskRow from "./TaskRow";
 
-interface Task {
-  id: string;
+export interface Task {
+  _id: string;
   summary: string;
   updatedAt: Date;
 }
 
 interface Props {
   updateCount: number;
+  refresh: () => void;
 }
 
-const TaskTable = ({ updateCount }: Props) => {
+const TaskTable = ({ updateCount, refresh }: Props) => {
   const [tasks, setTasks] = useState<Array<Task> | null>(null);
   useEffect(() => {
     axios.get<Array<Task>>("/api/tasks").then((response) => {
@@ -25,6 +27,7 @@ const TaskTable = ({ updateCount }: Props) => {
       <Table variant="simple" m={30}>
         <Thead>
           <Tr>
+            <Th></Th>
             <Th>Task ID</Th>
             <Th>Summary</Th>
             <Th>Last Update Time</Th>
@@ -32,21 +35,11 @@ const TaskTable = ({ updateCount }: Props) => {
         </Thead>
         <Tbody>
           {tasks.map((task) => {
-            return renderTask(task);
+            return <TaskRow task={task} refresh={refresh} />;
           })}
         </Tbody>
       </Table>
     )
-  );
-};
-
-const renderTask = (task: Task) => {
-  return (
-    <Tr>
-      <Td>{task.id}</Td>
-      <Td>{task.summary}</Td>
-      <Td>{task.updatedAt}</Td>
-    </Tr>
   );
 };
 

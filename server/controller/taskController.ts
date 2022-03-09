@@ -12,7 +12,7 @@ const getAllTasks = (_: Request, response: Response) => {
 const createTask = (request: Request, response: Response) => {
   const { summary } = request.body;
   const task: ITask = new Task({
-    id: new mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     summary,
     updatedAt: new Date(),
   });
@@ -22,4 +22,17 @@ const createTask = (request: Request, response: Response) => {
     .catch((ex) => console.error(ex));
 };
 
-export default { getAllTasks, createTask };
+const deleteTask = (request: Request, response: Response) => {
+  const { id } = request.params;
+  console.log(`id to delete is ${id}`);
+  Task.findByIdAndRemove(new mongoose.Types.ObjectId(id))
+    .then((task) => {
+      console.log(`deleted ${JSON.stringify(task)}`);
+      response.status(200).json(task);
+    })
+    .catch((ex) => {
+      response.status(500).json({ error: ex });
+    });
+};
+
+export default { getAllTasks, createTask, deleteTask };

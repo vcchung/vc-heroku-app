@@ -15,7 +15,7 @@ function App() {
         <Heading as="h2" size="3xl" mt={10}>
           VC Todo App
         </Heading>
-        <TaskTable updateCount={updateCount} />
+        <TaskTable updateCount={updateCount} refresh={refresh} />
         <TaskInput refresh={refresh} />
       </div>
     </ChakraProvider>
