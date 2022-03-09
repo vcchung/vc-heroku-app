@@ -8,17 +8,21 @@ interface Task {
   updatedAt: Date;
 }
 
-const TaskTable = () => {
+interface Props {
+  updateCount: number;
+}
+
+const TaskTable = ({ updateCount }: Props) => {
   const [tasks, setTasks] = useState<Array<Task> | null>(null);
   useEffect(() => {
     axios.get<Array<Task>>("/api/tasks").then((response) => {
       setTasks(response.data);
     });
-  }, []);
+  }, [updateCount]);
 
   return (
     tasks && (
-      <Table variant="simple" mt={30}>
+      <Table variant="simple" m={30}>
         <Thead>
           <Tr>
             <Th>Task ID</Th>
