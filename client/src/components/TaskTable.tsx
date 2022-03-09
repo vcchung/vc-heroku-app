@@ -18,7 +18,7 @@ const TaskTable = () => {
 
   return (
     tasks && (
-      <Table variant="simple">
+      <Table variant="simple" mt={30}>
         <Thead>
           <Tr>
             <Th>Task ID</Th>
