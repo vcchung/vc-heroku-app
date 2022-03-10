@@ -11,6 +11,7 @@ const TaskInput = ({ refresh }: Props) => {
   return (
     <HStack>
       <Input
+        w={["80vw", "80vw", "50vw", "50vw"]}
         placeholder="Enter new task summary ..."
         value={input ?? ""}
         onChange={(e) => {

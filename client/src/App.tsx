@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { ChakraProvider, Heading } from "@chakra-ui/react";
+import { ChakraProvider, Heading, VStack } from "@chakra-ui/react";
 import TaskTable from "./components/TaskTable";
 import TaskInput from "./components/TaskInput";
 
@@ -11,13 +11,11 @@ function App() {
   };
   return (
     <ChakraProvider>
-      <div className="App">
-        <Heading as="h2" size="3xl" mt={10}>
-          VC Todo App
-        </Heading>
+      <VStack className="App">
+        <Heading m="2rem">VC Todo App</Heading>
         <TaskTable updateCount={updateCount} refresh={refresh} />
         <TaskInput refresh={refresh} />
-      </div>
+      </VStack>
     </ChakraProvider>
   );
 }

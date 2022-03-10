@@ -24,7 +24,7 @@ const TaskTable = ({ updateCount, refresh }: Props) => {
 
   return (
     tasks && (
-      <Table variant="simple" m={30}>
+      <Table variant="simple" w={["90%", "90%", "80%", "80%"]}>
         <Thead>
           <Tr>
             <Th></Th>
