@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button, HStack } from "@chakra-ui/react";
+import { Input, Button, HStack, Select } from "@chakra-ui/react";
 import axios from "axios";
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 
 const TaskInput = ({ refresh }: Props) => {
   const [input, setInput] = useState<string | null>(null);
+  const [type, setType] = useState<string | null>(null);
   return (
     <HStack>
       <Input
@@ -18,12 +19,25 @@ const TaskInput = ({ refresh }: Props) => {
           setInput(e.target.value);
         }}
       />
+      <Select
+        placeholder="Select type"
+        isRequired={true}
+        value={type ?? ""}
+        onChange={(e) => {
+          setType(e.target.value);
+        }}
+      >
+        <option value="work">work</option>
+        <option value="learning">learning</option>
+        <option value="family">family</option>
+        <option value="chore">chore</option>
+      </Select>
       <Button
         colorScheme="blue"
         isDisabled={!input}
         onClick={() => {
           axios
-            .post("/api/tasks", { summary: input })
+            .post("/api/tasks", { summary: input, type: type })
             .then(() => {
               console.log("successfully created task");
               setInput(null);

@@ -6,6 +6,7 @@ import TaskRow from "./TaskRow";
 export interface Task {
   _id: string;
   summary: string;
+  type: string;
   updatedAt: Date;
 }
 
@@ -28,9 +29,8 @@ const TaskTable = ({ updateCount, refresh }: Props) => {
         <Thead>
           <Tr>
             <Th></Th>
-            <Th>Task ID</Th>
             <Th>Summary</Th>
-            <Th>Last Update Time</Th>
+            <Th>Type</Th>
           </Tr>
         </Thead>
         <Tbody>

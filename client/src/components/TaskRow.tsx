@@ -19,9 +19,8 @@ const TaskRow = ({ task, refresh }: Props) => {
       <Td>
         <Button onClick={removeTaskHandle}>X</Button>
       </Td>
-      <Td>{task._id}</Td>
       <Td>{task.summary}</Td>
-      <Td>{task.updatedAt}</Td>
+      <Td>{task.type}</Td>
     </Tr>
   );
 };

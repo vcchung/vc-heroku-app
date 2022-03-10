@@ -10,10 +10,11 @@ const getAllTasks = (_: Request, response: Response) => {
 };
 
 const createTask = (request: Request, response: Response) => {
-  const { summary } = request.body;
+  const { summary, type } = request.body;
   const task: ITask = new Task({
     _id: new mongoose.Types.ObjectId(),
     summary,
+    type,
     updatedAt: new Date(),
   });
   task

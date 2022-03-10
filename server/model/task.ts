@@ -3,12 +3,14 @@ import { Document, Schema, Model, model } from "mongoose";
 export interface ITask extends Document {
   _id: string;
   summary: string;
+  type: string;
   updatedAt: Date;
 }
 
 const TaskSchema = new Schema({
   _id: { type: String, required: true },
   summary: { type: String, required: true },
+  type: { type: String, required: true },
   updatedAt: { type: Date, required: true },
 });
 
