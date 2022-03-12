@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getTasks, deleteTask, createTask } from "../api/TaskApi";
+import Task from "../model/Task";
+import TaskCreateInput from "../model/TaskCreateInput";
 import TaskInput from "./TaskInput";
 import TaskTable from "./TaskTable";
 
 const TaskGroup = () => {
-  const [updateCount, setUpdateCount] = useState(0);
-  const refresh = () => {
-    setUpdateCount((previous) => previous + 1);
+  const [tasks, setTasks] = useState<Task[] | null>(null);
+  useEffect(() => {
+    refreshTasksHandle();
+  });
+
+  const refreshTasksHandle = () => {
+    return getTasks().then((response) => setTasks(response.data));
   };
+  const deleteTaskHandle = (taskId: string) => {
+    return deleteTask(taskId).then(() => refreshTasksHandle());
+  };
+
+  const createTaskHandle = (taskCreateInput: TaskCreateInput) => {
+    return createTask(taskCreateInput).then(() => refreshTasksHandle());
+  };
+
   return (
     <>
-      <TaskTable updateCount={updateCount} refresh={refresh} />
-      <TaskInput refresh={refresh} />
+      <TaskTable tasks={tasks} deleteTaskHandle={deleteTaskHandle} />
+      <TaskInput createTaskHandle={createTaskHandle} />
     </>
   );
 };

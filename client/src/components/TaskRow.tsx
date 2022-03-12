@@ -5,19 +5,14 @@ import Task from "../model/Task";
 
 interface Props {
   task: Task;
-  refresh: () => void;
+  deleteTaskHandle: (taskId: string) => void;
 }
 
-const TaskRow = ({ task, refresh }: Props) => {
-  const removeTaskHandle = async () => {
-    await axios.delete(`/api/tasks/${task._id}`).then(() => {});
-    refresh();
-  };
-
+const TaskRow = ({ task, deleteTaskHandle }: Props) => {
   return (
     <Tr>
       <Td>
-        <Button onClick={removeTaskHandle}>X</Button>
+        <Button onClick={() => deleteTaskHandle(task._id)}>X</Button>
       </Td>
       <Td>{task.summary}</Td>
       <Td>{task.type}</Td>

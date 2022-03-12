@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Input, Button, HStack, Select } from "@chakra-ui/react";
-import axios from "axios";
+import TaskCreateInput from "../model/TaskCreateInput";
 
 interface Props {
-  refresh: () => void;
+  createTaskHandle: (taskCreateInput: TaskCreateInput) => void;
 }
 
-const TaskInput = ({ refresh }: Props) => {
+const TaskInput = ({ createTaskHandle }: Props) => {
   const [input, setInput] = useState<string | null>(null);
   const [type, setType] = useState<string | null>(null);
   return (
@@ -33,16 +33,12 @@ const TaskInput = ({ refresh }: Props) => {
       </Select>
       <Button
         colorScheme="blue"
-        isDisabled={!input}
+        isDisabled={!input || !type}
         onClick={() => {
-          axios
-            .post("/api/tasks", { summary: input, type: type })
-            .then(() => {
-              console.log("successfully created task");
-              setInput(null);
-              refresh();
-            })
-            .catch((ex) => console.error("Failed to create task"));
+          if (input && type) {
+            createTaskHandle({ summary: input, type: type });
+            setInput(null);
+          }
         }}
       >
         Create
