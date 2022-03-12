@@ -15,15 +15,15 @@ const TaskGroup = () => {
     const tasks = await getTasks();
     setTasks(tasks);
   };
-  const deleteTaskHandle = async (taskId: string) => {
-    await deleteTask(taskId);
+
+  const updateTaskHandle = (fun: any) => async (arg: any) => {
+    await fun(arg);
     refreshTasksHandle();
   };
 
-  const createTaskHandle = async (taskCreateInput: TaskCreateInput) => {
-    createTask(taskCreateInput);
-    refreshTasksHandle();
-  };
+  const deleteTaskHandle = updateTaskHandle(deleteTask);
+
+  const createTaskHandle = updateTaskHandle(createTask);
 
   return (
     <>
