@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import TaskRow from "./TaskRow";
 import { getTasks } from "../api/TaskApi";
-
-export interface Task {
-  _id: string;
-  summary: string;
-  type: string;
-  updatedAt: Date;
-}
+import Task from "../model/Task";
 
 interface Props {
   updateCount: number;

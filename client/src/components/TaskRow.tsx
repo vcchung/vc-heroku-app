@@ -1,7 +1,7 @@
 import { Button, Td, Tr } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
-import { Task } from "./TaskTable";
+import Task from "../model/Task";
 
 interface Props {
   task: Task;
