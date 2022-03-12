@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import TaskRow from "./TaskRow";
+import { getTasks } from "../api/TaskApi";
 
 export interface Task {
   _id: string;
@@ -17,10 +18,13 @@ interface Props {
 
 const TaskTable = ({ updateCount, refresh }: Props) => {
   const [tasks, setTasks] = useState<Array<Task> | null>(null);
+
   useEffect(() => {
-    axios.get<Array<Task>>("/api/tasks").then((response) => {
+    const updateTasks = async () => {
+      const response = await getTasks();
       setTasks(response.data);
-    });
+    };
+    updateTasks();
   }, [updateCount]);
 
   return (
