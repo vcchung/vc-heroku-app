@@ -11,15 +11,18 @@ const TaskGroup = () => {
     refreshTasksHandle();
   });
 
-  const refreshTasksHandle = () => {
-    return getTasks().then((response) => setTasks(response.data));
+  const refreshTasksHandle = async () => {
+    const tasks = await getTasks();
+    setTasks(tasks);
   };
-  const deleteTaskHandle = (taskId: string) => {
-    return deleteTask(taskId).then(() => refreshTasksHandle());
+  const deleteTaskHandle = async (taskId: string) => {
+    await deleteTask(taskId);
+    refreshTasksHandle();
   };
 
-  const createTaskHandle = (taskCreateInput: TaskCreateInput) => {
-    return createTask(taskCreateInput).then(() => refreshTasksHandle());
+  const createTaskHandle = async (taskCreateInput: TaskCreateInput) => {
+    createTask(taskCreateInput);
+    refreshTasksHandle();
   };
 
   return (

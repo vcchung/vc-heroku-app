@@ -2,8 +2,8 @@ import axios from "axios";
 import Task from "../model/Task";
 import TaskCreateInput from "../model/TaskCreateInput";
 
-export const getTasks = () => {
-  return axios.get<Array<Task>>("/api/tasks");
+export const getTasks = (): Promise<Task[]> => {
+  return axios.get<Task[]>("/api/tasks").then((response) => response.data);
 };
 
 export const deleteTask = (taskId: string) => {
