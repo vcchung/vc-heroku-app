@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
+import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/table";
 import TaskRow from "./TaskRow";
 import { getTasks } from "../api/TaskApi";
 
