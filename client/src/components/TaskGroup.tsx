@@ -9,7 +9,7 @@ const TaskGroup = () => {
   const [tasks, setTasks] = useState<Task[] | null>(null);
   useEffect(() => {
     refreshTasksHandle();
-  });
+  }, []);
 
   const refreshTasksHandle = async () => {
     const tasks = await getTasks();
