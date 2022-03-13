@@ -16,10 +16,11 @@ const TaskGroup = () => {
     setTasks(tasks);
   };
 
-  const updateTaskHandle = (fun: any) => async (arg: any) => {
-    await fun(arg);
-    refreshTasksHandle();
-  };
+  const updateTaskHandle =
+    (callApiFunc: Function) => async (arg: string | TaskCreateInput) => {
+      await callApiFunc(arg);
+      refreshTasksHandle();
+    };
 
   const deleteTaskHandle = updateTaskHandle(deleteTask);
 
