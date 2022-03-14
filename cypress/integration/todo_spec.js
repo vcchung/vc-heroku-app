@@ -3,6 +3,6 @@ describe("To do app", () => {
     cy.visit("http://localhost:3000");
   });
   it("can see the heading", () => {
-    cy.get(".chakra-heading").should("include.text", "Todo App");
+    cy.get(".chakra-heading").should("include.text", "Todo App this will fail");
   });
 });
