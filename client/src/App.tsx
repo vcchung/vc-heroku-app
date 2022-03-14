@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { ChakraProvider, Heading, VStack } from "@chakra-ui/react";
-import TaskTable from "./components/TaskTable";
-import TaskInput from "./components/TaskInput";
 import TaskGroup from "./components/TaskGroup";
 
 function App() {
